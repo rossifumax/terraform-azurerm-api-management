@@ -99,7 +99,13 @@ variable "proxy_hostname_configuration" {
 
 variable "portal_hostname_configuration" {
   type        = list(map(string))
-  description = "List of portal hostname configurations"
+  description = "Legacy portal hostname configurations"
+  default     = []
+}
+
+variable "developer_portal_hostname_configuration" {
+  type        = list(map(string))
+  description = "Developer portal hostname configurations"
   default     = []
 }
 
@@ -149,4 +155,34 @@ variable "virtual_network_configuration" {
   type        = list(string)
   description = "The id(s) of the subnet(s) that will be used for the API Management. Required when virtual_network_type is External or Internal"
   default     = []
+}
+
+variable "identity_type" {
+  description = "Type of Managed Service Identity that should be configured on this API Management Service"
+  type        = string
+  default     = "SystemAssigned"
+}
+
+variable "named_values" {
+  description = "Map containing the name of the named values as key and value as values"
+  type        = list(map(string))
+  default     = []
+}
+
+variable "groups" {
+  description = "List of groups to create"
+  type        = list(string)
+  default     = []
+}
+
+variable "products" {
+  description = "List of products to create"
+  type        = list(string)
+  default     = []
+}
+
+variable "create_product_group_relationships" {
+  description = "Create a relationship between groups and products. Lists for products and groups must be of the same size"
+  type        = bool
+  default     = false
 }
